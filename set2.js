@@ -211,14 +211,14 @@ function scytaleCipher(message, shift) {
  * @param {Number} shift A positive integer that does not exceed the length of the message
  */
 function scytaleDecipher(message, shift) {
-    let messageLength = message.length;
-    let numRows = Math.ceil(messageLength / shift); 
+    const messageLength = message.length;
+    const numRows = Math.ceil(messageLength / shift); 
     let decodedMessage = '';
 
-    for (let i = 0; i < numRows; i++) {
-        for (let j = 0; j < shift; j++) {
-            let index = i + j * numRows;  
-            if (index < messageLength) { 
+    for (let col = 0; col < shift; col++) {
+        for (let row = 0; row < numRows; row++) {
+            const index = row * shift + col; 
+            if (index < messageLength) {
                 decodedMessage += message[index];
             }
         }
